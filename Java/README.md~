@@ -1,0 +1,317 @@
+# 基础(1)
+- 分别定义JAVA的.4类8种变量
+- 定义字符串常量 .
+- 作用范围
+- 强制转换一个变量类型
+- ++在前和++后的区别.在前先算自己,在后后算自己.
+
+* * *
+
+- 逻辑运算符,不同于其他语言
+- 按位与 &
+- 按位或 |
+- 异或 ^ 二进制相比较 相同为0 不同为1. 比如  1101 ^ 1110 = 0 0 1 1 
+- 取反 ~
+- 短路与 &&
+- 短路或 ||
+
+## Scanner 类
+- 导入包
+`import java.utils.scaner;`
+- 获取字符串,数字输入(next)
+- 生成随机数
+
+## 流程控制
+- 各种循环和javascript一样  
+```
+	break,continue 一样
+	switch case穿透性
+	case 1:
+	case 2:
+	break;
+```
+
+## 定义数组,一定要定义数字长度
+- java 方法重载,可以定义多个同名的方法,但参数必须不一样
+- byte 和 short不能做为JAVA的返回类型
+- return 退出整个方法
+
+## 面对对象
+- 如果一个类中全部方法都是静态，则要将构造方法私有化。避免其他人使用。
+## 文档注释 
+> #javadoc
+```
+@title
+@package
+@description
+@date 2018-1-20
+@author ddweb.com
+@version v1.0
+@param arr 接收一个数组
+@return 打印数组
+@ClassName
+@throws 
+```
+
+## 代码块 
+- 构造代码块
+> 构造代码块优先于构造函数.有参构造,无参构造.
+```
+{
+	System.out.println("构造代码块.");
+}
+```
+
+- 静态代码块
+> 静态代码块随随着类的加载而加载,所以只执行一次.一般用来加载驱动.
+```
+static {
+	System.out.println("构造代码块.");
+}
+```
+
+### 代码修饰符
+1. extends 继承
+java只支持单继承,不支持多继承  
+supuer();访问父级的构造方法  
+this();访问本层的构造方法  
+每个类的第一句隐藏着super();  
+父级的super()会访问顶层Object.  
+this(); super(); 只能出现1个.  
+子类的权限一定要大于父类方法. 父类声明 为static时 .子类也必须为static  
+Override Overload, 重写,重载.
+
+2. final 最终类的关键字 不让子类重写 与abstract冲突(强制让子类重写)
+
+## 面对对象
+### 多态 plymorphic
+1. 要有续存关系
+2. 要有方法重写
+3. 要有父类引用指向子类对象.多态为每个字类的方法的表现.
+```
+	class DamePlymorphic()
+	{
+		public static void main(String[] args)
+		{	
+			//此处为Father引用.因此值为super 空间的num.
+			Father f = new Son();
+			System.out.println(f.num);//值 为10 
+			
+			Son s = new Son();
+			System.out.println(s.num);//值 为20 
+		}
+	}
+	
+	class Father{
+		int num = 10;
+	}
+	class Son extends Father{
+	//进入堆时,他创建自己,以及在本身内部创建一个super空间.则为Father的空间.
+		int num = 20;
+	}
+```
+
+4. 动点绑定方法,编译时看父类有没有方法.运行是看子类.
+5. 静态方法为静态组长定.编译看父类(左边),运行也看父类(左边)
+6. 向上转换和向下转换. 基本数据类型的自动类型提升和强制类型转换.
+```
+	class DemeSuperMan()
+	{
+		public void main(Strint[] agrs)
+		{
+			Person p = new SuperPerson();
+			p.talk();
+			SuperPerson sm = (SuperPerson)p;//向下强制转型.意思着将数据类型转为本身.不再调用super区的内容 .因为运行时看右边
+			p.fly();//强制转换后可以调用下级的方法.
+			
+		}
+	}
+	class Person()
+	{
+		String name = "John";
+		public void talk()
+		{
+			System.out.println("talk");
+		}
+		public void fly()
+		{
+			System.out.println("fly");
+		}
+	}
+	class SuperPerson extends Person()
+	{
+		String name = "SuperPerson";
+		public void fly()
+		{
+			System.out.println("fly");
+		}
+	}
+```
+
+7. 多态好处.提高代码的维护性,扩展性
+```
+	public static void method(Animal a)
+	{
+		Cat c = (Cat)a;//强转一次
+		a.eat();//instranceof 
+	}
+
+	class Animal{
+			
+		}
+		
+		
+	}
+```
+
+### 抽象类 abstract 用于强制子类必须做的事情.
+1. 抽象类也拥有构造方法.
+2. 抽象类可以没有具体实现. 并且不能被实例化.抽象关键字不能修饰成员变量.
+	```
+	abstract class Animal{
+		public abstract void eat();
+	}
+	
+	class Cat extends Animal{
+		public ovid eat()
+		{
+			System.out.println("eat");
+		}
+	}
+	```
+3. 子类一定要重写抽象类中的方法.
+4. abstract 不能与 static共存. 不能与private共存.
+
+### 接口类 interface
+```
+	insterface Inter{
+		int num = 10; //默认加上final 修饰.
+		
+	}
+	insterface InterB{
+		int num = 10; //默认加上final 修饰.
+		
+	}
+
+	class Demo implements Inter,InterB{//多实现重写接口.
+		public void print()
+		{
+			System.out.println(num);
+		}
+	}
+```
+
+- 接口中定义的变量都是常量.不允许修改.
+- 接口中不能定义非抽象方法.接口类中不加修饰时,将默认加上abstract关键字.
+- 接口是暴露原则. 所以所有方法和成员都会默认加上public方法.
+- - -
+### 接口抽象类的总结代码
+```
+	abstract class Animal 
+	{
+		private String name;
+		private int age;
+		public Animal(){} //空参构造
+		public void set(String n) 
+		{
+			name = n;
+		}
+		public void set(int n) 
+		{
+			age = n;
+		}
+
+		public abstract void eat();	
+
+		public abstract void sleep()
+	}
+
+	interface Jumping
+	{
+		public void Jump();
+	}
+
+	class Cat extends Animal  implements Jumping
+	{
+		
+	}  
+```
+
+## day10
+### 包package
+> 包是将字节码分类存放
+> 包必须是JAVA文件里的第一行有效语句  
+每个文件只有能一个包  
+ `package com.ddweb`  
+编译带包类`javac -d xxx.java`
+### improt导入包 使包的类对当前可见.
+1. 包的导入`import com.ddweb.Person;`
+2. 第二种导包形式`import java.util.*;`使用通配符导入全部.
+### 权限修饰符
+1. `private`私有权限
+2. `protected`受保护本类可权限 
+3. `public`公共可访问权限
+### 内部类
+1. 外部类访问内部对旬,必须写明.
+2. 局部内部类
+```
+    //存在于方法中的类
+    class Demo{
+    	public void method()
+    	{
+    		class Inner{
+    			System.out.println("该类为局部内部类.");
+    		}
+    	}
+    }
+```
+
+### 匿名类
+```
+    class Demo{
+    	public void method()
+    	{
+    		class Inner{
+    			System.out.println("该类为局部内部类.");
+    		}
+    	}
+    }
+```
+
+1. `new className();`->是实例化一个类.`new interfaceName(){};`是实现一个方法.
+2. 匿名内部类无法向下转型,因为没有子类.
+3. 匿名类在开发中的具体使用,当着参数传递
+4. 匿名内部类实际上就是重写interface 或者 abstract 类.因为该种类的子类都是没有具体指定的.重写就是调用该类的匿名内部子类.
+
+## eclipse
+### 常用键
+> `Alt+\` 代码提示  
+`Ctrl+n` 新建 n= New   
+`Ctrl+Shift+f` 格式化代码   
+`Ctrl+/,Ctrl+Shift+/,Ctrl+Shift+\` 注释,反注释   
+`Ctrl+shift+o` 整理代码,自动导入包   
+`Alt+上箭头|下箭头` 上下移动代码  
+`C+上箭头|下箭头` 上下移动代码  
+`Ctrl+鼠标移到对应,F3` 查看源代码 
+`Ctrl+Shift+T` 查找具体类  
+`Ctrl+o` 查找具体方法  
+`Ctrl+1` 给出当前代码的建议方法  
+`Ctrl+d` 删除代码  
+`Alt+Shift+m` 抽取代码  
+`Alt+Shift+r` 方法或变量改名  
+`Alt+Shift+s` 自动生成方法(o,m,r) 
+
+## Object
+### Object是JAVA的顶级类.
+> `hasCode()` 获取has值  
+`getClass()` 获取该对象的字节码文件  
+`toString()` 获取对象的字符串表示 
+`equals()` 比较两个对象是否相等
+
+### ==和equals的区别
+1. ==是比较运算符,即可以比较基本类型,也可以比较引用数据类型.比较引用数据型是比较的是引用地址值
+2. equals方法只能比较引用数据类型.比较的是引用数据的地址值.
+
+# JAVA学习 2018.1.17
+> `F:\video\Java\北京黑马java28期基础班+就业班\01_2016年北京黑马最新基础班\day14\day14_video` 
+

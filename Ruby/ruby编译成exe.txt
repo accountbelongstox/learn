@@ -1,0 +1,43 @@
+如果想用Ruby制作exe格式的程序。
+需要下载专门转换的软件。
+ 
+1.下载
+推荐使用exerb.下载地址为:
+http://exerb.sourceforge.jp/
+网页为日文版，网页的中部有一个Exerb的栏，下面有一个可下载的压缩包的连接，例如：exerb-版本号。
+ 
+2.安装
+点击下载后，解压，运行setup.rb文件。（网页上有日语版的使用手册，我在这里只记述了使用方法）
+在dos环境下，输入命令ruby setup.rb即可。
+ 
+3.使用方法（例：单文件）
+a.准备文件
+
+在Ruby自带的SciTE的rb文件的编辑器中，输入
+puts "Hello!"
+保存文件名为"hello.rb".
+b.进入dos环境，输入命令ruby hello.rb确认是否文件是否存在，请一定这样做。
+若输出为：
+Hello!
+c.确认文件确实存在后，在dos环境下执行exerb hello.rb进行转换
+同一文件夹下生成了，hello.exe的文件。
+d.验证动作exe文件是否转换成功。
+直接运行hello.exe文件，若输出和之前rb格式的文件结果一样。
+Hello!
+恭喜你~
+若多文件，例如:
+现有文件"hello_def.rb"
+另有文件"hello_call.rb"
+若文件是从hello_call.rb开始的，那么则建立文件hello_call.exy
+内容为：
+general:
+  startup: hello_call.rb
+file:
+  hello_call.rb:
+  hello_def.rb:
+然后，在dos环境下，执行下列命令，
+ruby -r exerb/mkexy hello_call.rb
+mkexy hello_call.rb
+exerb hello_call.exy
+最后确认是否生成正确。
+输入hello_call.exe。
