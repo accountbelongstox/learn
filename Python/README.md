@@ -18,12 +18,14 @@
     - 字符串String
         - 单引号,双引号`'srting'`
         - 三引号用来多行文本
+
 ```
 '''
 hello
  word
 '''
 ```
+
         - *format*字符串`"{0} as {1}".format("name",str(23))`
         - 字符串连接,使用+号:`"name"+" is x"`
     -  数字型numeric
