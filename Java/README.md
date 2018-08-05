@@ -731,12 +731,22 @@ Override Overload, 重写,重载.
     - 设置占位符`pst.setObject(1,user)`,`pst.setObject(2,pwd)`
     - 直接执行PerpareStatement的SQL语句`pst.executeUpdate();`
     - 直接执行PerpareStatement的查询`ResultSet rs = pst.executeQuery();`
+    - 取得集合`Sort s = new Sort(rs.getInt("sid"),rs.getString("sname"),rs.getDouble("sprice"),rs.getString("sdesc"));`
 
 - JDBC-Utils工具类
 
-    - 
+    - jdbc-utils`public class jdbcUtils{ private static Connection con; static{  ...数据库连接代码 } }`
+    
+- JDBC-Properties
+    
+    - 读取为同目录的配置文件必须要用类的加载器.
+    - 取得类的加载类`jdbcProClass.class.getClassLoader()`
+    - 返回指定要读取的资源流`getResourceAsStream("database.properties")`,返回值为`InputStream`.方法会从类的当前路径读取
+    - 加载流`InputStream in = PropertiesDemo.class.getClassLoader().getResourceAsStream("database.properties");`
+    - fs.
 
 * 扫描系统输入`Scanner sc = new Scanner(System.in)`,系统输入`System.in`,系统输出`System.out`
     
 ### JAVA学习 2018.1.17
-> `F:\video\Java\北京黑马java28期基础班+就业班\01_2016年北京黑马最新基础班\day29\day29_video` 
+
+- `F:\video\Java\北京黑马java28期基础班+就业班\01_2016年北京黑马最新基础班\day30\day30_video` 

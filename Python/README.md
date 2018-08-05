@@ -169,6 +169,8 @@ del list
 3. `float()`转为浮点
 1. `bool()`转为布尔
 
+* 切片listName[:1].表示slice(0,1)
+
 ### 字面常量literal constant
 > 可以直接以字面意义使用他们,不会被改变
 ### 变量identifier
@@ -398,22 +400,22 @@ if __name__ == "__main__":
 
 ## Django
 
-1. 安装虚拟环境`pip install keyrings.alt`
-2. 安装虚拟环境`pip install virtualenv`
-3. 创建虚拟环境`cd /d D:\workroom`,`virtualenv django_dev`
-4. 安装DJingo`pip install django`
-5. 安装DJingo`pip install -U django`
-6. 安装PYMySql`pip install pymysql`
-7. 进入虚拟环境:执行`cd django_dev/Scripts/`
-8. 进入虚拟环境:执行`Activate`
-9. 查找主控程序`where Django-admin`
-10. 创建一个项目`django-admin startproject maobanweb`
-11. 运行项目`cd maobanweb`
-12. 同步数据库`python manage.py makemigrations`
-13. 同步数据库`python manage.py migrate `
-13. 创建用户名及密码`python manage.py createsuperuser `
-14. 运行项目`python manage.py runserver 8081`
-15. 登陆后台`/admin/`
+- 安装虚拟环境`pip install keyrings.alt`
+- 安装虚拟环境`pip install virtualenv`
+- 创建虚拟环境`cd /d D:\workroom`,`virtualenv django_dev`
+- 安装DJingo`pip install django`
+- 安装DJingo`pip install -U django`
+- 安装PYMySql`pip install pymysql`
+- 进入虚拟环境:执行`cd django_dev/Scripts/`
+- 进入虚拟环境:执行`Activate`
+- 查找主控程序`where Django-admin`
+- 创建一个项目`django-admin startproject maobanweb`
+- 运行项目`cd maobanweb`
+- 同步数据库`python manage.py makemigrations`
+- 同步数据库`python manage.py migrate `
+- 创建用户名及密码`python manage.py createsuperuser `
+- 运行项目`python manage.py runserver 8081`
+- 登陆后台`/admin/`
 
 #### Django-admin
 
@@ -435,8 +437,40 @@ if __name__ == "__main__":
 - 导出数据`dumpdata`
 - 导入数据`loaddata`
 - 查看你的配置和DJANGO默认配置的不同之处`diffsettings`
-- Shell
 
+- 强制更新数据库
+
+    - `python manager.py makemigrations appName`
+    - `python manager.py migrate appName`
+
+- Shell(Django-admin) 
+    
+    - 进入shell环境`python manage.py shell`
+    - 导入所有类`from maobanapp.models import *`
+    - `objects`是model默认管理器
+    - 增加数据`User.objects.create(user='admin',password='123456',money=33.3)`
+    - 增加数据`user = User() /  user.user = 'xxxx'  user.save()`
+    - 一对多插入,对应的位置直接给对象
+    - 多对多插入,`User.fieldName.add(objectName)`
+    - 删除数据`User.objects.filter(id=1).delete()` 
+    - 更新数据`User.objects.get(id=1).update(name='new')` 先取得再保存
+    - 查询语句
+        - Django查询是惰性查询,在Shell下是立即查询.
+        - 查询会返回一个  QuerySet类型
+        - 查询数据`User.objects.get(id=1)`
+        - 查询数据->查询所有`User.objects.all()`
+        - `get(**keys)`
+        - `all()`
+        - 'exclude(**keys)'包含那些与所给筛选条件不匹配的对象
+        - `order_by()`对查询结果排序
+        - `reverse()`反向
+        - `distinct()`从返回结果中剔除重复记录
+        - `values()`返回一个ValuesQuerySet 一个特殊的QuerySet,运行后并不是一系列model的实例化对象,而是一个可以迭代的序列
+        - `values_list()`和values一样,但返回元组
+        - `count()`返回数量
+        - `first()`第一条数据,等价于[:1][0]
+        - `last()`最后一条,等价于[:1][0]
+        - `exists()`是否存在,返回boolean
 
 #### Manage.py工程管理工具,是对`django-admin`的包装
 1. 运行项目`python manage.py runserver 8080`,默认为8000端口
@@ -508,8 +542,6 @@ Boolean |布尔类型(0代表false,代表true)
     - 视图表作用在于隐藏某些数据.
 
 * * *
-
-
 
 1. 使用纯python数据驱动`PyMysql`
 
