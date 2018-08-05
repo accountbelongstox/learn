@@ -15,27 +15,25 @@
     - `tab`缩进
 
 - 数据类型
-    - 字符串
+    - 字符串String
         - 单引号,双引号`'srting'`
         - 三引号用来多行文本
 ```
-'''hello
- word'''
+'''
+hello
+ word
+'''
 ```
+        - *format*字符串`"{0} as {1}".format("name",str(23))`
+        - 字符串连接,使用+号:`"name"+" is x"`
+    -  数字型numeric
+        - int整数
+        - bool布尔`True`
+        - float浮点
+        - complex()复数类型` 4+3j`
+- 数据转换
 
-> format 字符串
-```
-print("{0} as {1}".format("name",str(23)))
-```
-> 多字符串连接
-```
-name = "my name"
-print(name+" is x")
-```
-### 数字型numeric
-- int
-- float
-- complex()
+
 #### 运算符
 - 算术运算符
 |算术运算符|表达式|说明|
@@ -520,8 +518,8 @@ if __name__ == "__main__":
 - sqlite默认支持`SQL`查询语句
 - 数据类型
 
-    1. sqlite可以给每个字段定义类型,如果没有定义,将会和JavaScript一样,自动属于于对态类型.
-    2. 默认会进行数据转换.比如将`hello`插入到`integer`类型表中,将插入`0`的数据
+    - sqlite可以给每个字段定义类型,如果没有定义,将会和JavaScript一样,自动属于于对态类型.
+    - 默认会进行数据转换.比如将`hello`插入到`integer`类型表中,将插入`0`的数据
 
 类型 | 说明
 -|-
@@ -547,7 +545,10 @@ Boolean |布尔类型(0代表false,代表true)
 
 - 使用纯python数据驱动`PyMysql`
 
-
+- 模版
+    - 判断`{% if name == 'admin' %} a {% else %} {% endif %}`支待`in`关键字
+    - 比较`{% ifequal %}`只支持整数小数等,不支持元组,字典,列表
+    - 循环`{% for item in list %} {% endof %}`
 
 * 学习树
 	* `E:\video\Python\05.python工程师全栈开发\02.第二阶段 PythonWeb开发\03.PythonWeb框架django基础视频教程 23课\jangojc14.mp4`
