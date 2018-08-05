@@ -567,6 +567,7 @@ Override Overload, 重写,重载.
 ### 2018-5-16
 
 #### 异常
+
 - Exception:异常
 - Error:严重错误/必须修改代码.
 - 抛出异常:`throw new Exception,NoSuchElmentException("error info")`,使用异常时需要声明异常,关键字:`throws`,抛出空指针`new NullPointerException("空指针")`
@@ -575,6 +576,7 @@ Override Overload, 重写,重载.
 - 父类有异常时,子类不用抛异常.但如果父类不抛异常,则子类不用抛.如果子类抛出异常将不能级别高于父类的.
 
 #### IO类
+
 - 文件操作包`java.io.File`
 - 与系统有关和路径隔符`File.pathSeparator`,与文件分隔符`File.separator`
 - 创建一个文件对象`File fl = new File("D:\\pathname\filename.fileExtand");`,`new File("D","pathname")`
@@ -591,27 +593,27 @@ Override Overload, 重写,重载.
 
 ### 2018-8-3
 
-1. 字节流,每次只操作文件中的一个字节
-2. 流对象自己不操作文件,所有操作依赖于操作系统
-3. 操作步骤:创建流子类的对象,绑定数据目的,调用流对象的读写方法,关闭流对象
-4. 输出流`java.io.FileOutputStream`,创建:`FileOutputStream('./test.txt')`,写入byte数组`fs.write("hellp".getBytes())`,关闭`fs.close()`
-5. 输入流`java.io.FileInputStream`,创建:`FileInputStream('./test.txt')`,读取一个字级数组`int oneChar = fs.read();System.out.println(char(oneChar))`.读取到没有字节时会返回`-1`
-6. 将输入流读取字节数组,再转为字符输入`byte[] b = new byte[1]; fs.read(b)`.每次读取的长度`int len = fs.read(b)`
-7. 字符解码`new String(byte)`
-8. 输入流的超类`fs = new FileWriter("./a.text")`,写入`fs.write({'a','b'})`,此方法需要要刷新否则不会到达目的地`fs.flush();`,关闭`fs.close();`
-9. FileReader只能读取文本`new FileReader("./a.txt")`,`int len = fs.read()`
-10. 字符流:字符转字节流.`OuputStreamWriter`,`new FileOutputStream("D:/workroom/java_study/2018-3-3/GBK.txt");new OutputStreamWriter(fos,"GBK");`
-11. 字符流:字节转字符流.`InputStreamReader`,`new FileInputStream("D:/workroom/java_study/2018-3-3/GBK.txt");new InputStreamReader(fos,"GBK");`
-12. 获取当前时间`System.getCurrentTimeMilils()`
-13. 将字符串转换为字符数组`"Hello".toCharArray()`
-14. 字符串缓存区`new BufferedWriter( new FileWriter("./a.text"))`,独有的`writeLine()`根据操作系统写入一下换行符
-15. 字符输入缓存区`BufferedReader()`,独有一个读行的方法`readLine()`
-16. Pproperties集合:用来存储键值对.等同于Map中的put方法.
-17. 反序列化`new Properties().load(new FileReader("properties.txt"))`
-18. 序列化:ObjectOutputStream `new ObjectOutputStream(new FileOutputStream("./o.txt")).writeObject(obj)`
-19. 反序列化:ObjectInputStream `new ObjectInputStream(new FileInputStream("./o.txt")).readObject(obj)`
-17. 序列化`new Properties().load(new FileReader("properties.txt"))`
-18. 禁止序列化关键字`transient`.`static transient a = 100`
+- 字节流,每次只操作文件中的一个字节
+- 流对象自己不操作文件,所有操作依赖于操作系统
+- 操作步骤:创建流子类的对象,绑定数据目的,调用流对象的读写方法,关闭流对象
+- 输出流`java.io.FileOutputStream`,创建:`FileOutputStream('./test.txt')`,写入byte数组`fs.write("hellp".getBytes())`,关闭`fs.close()`
+- 输入流`java.io.FileInputStream`,创建:`FileInputStream('./test.txt')`,读取一个字级数组`int oneChar = fs.read();System.out.println(char(oneChar))`.读取到没有字节时会返回`-1`
+- 将输入流读取字节数组,再转为字符输入`byte[] b = new byte[1]; fs.read(b)`.每次读取的长度`int len = fs.read(b)`
+- 字符解码`new String(byte)`
+- 输入流的超类`fs = new FileWriter("./a.text")`,写入`fs.write({'a','b'})`,此方法需要要刷新否则不会到达目的地`fs.flush();`,关闭`fs.close();`
+- FileReader只能读取文本`new FileReader("./a.txt")`,`int len = fs.read()`
+- 字符流:字符转字节流.`OuputStreamWriter`,`new FileOutputStream("D:/workroom/java_study/2018-3-3/GBK.txt");new OutputStreamWriter(fos,"GBK");`
+- 字符流:字节转字符流.`InputStreamReader`,`new FileInputStream("D:/workroom/java_study/2018-3-3/GBK.txt");new InputStreamReader(fos,"GBK");`
+- 获取当前时间`System.getCurrentTimeMilils()`
+- 将字符串转换为字符数组`"Hello".toCharArray()`
+- 字符串缓存区`new BufferedWriter( new FileWriter("./a.text"))`,独有的`writeLine()`根据操作系统写入一下换行符
+- 字符输入缓存区`BufferedReader()`,独有一个读行的方法`readLine()`
+- Pproperties集合:用来存储键值对.等同于Map中的put方法.
+- 反序列化`new Properties().load(new FileReader("properties.txt"))`
+- 序列化:ObjectOutputStream `new ObjectOutputStream(new FileOutputStream("./o.txt")).writeObject(obj)`
+- 反序列化:ObjectInputStream `new ObjectInputStream(new FileInputStream("./o.txt")).readObject(obj)`
+- 序列化`new Properties().load(new FileReader("properties.txt"))`
+- 禁止序列化关键字`transient`.`static transient a = 100`
 
 ##### try,catch,finally
 
@@ -622,93 +624,93 @@ Override Overload, 重写,重载.
 
 * 多线程
 
-1. 创建一个线程,继承线程主方法`class SubThread extend Thread{}`
-2. 重写`class SubThread extend Thread{ public void run(){}}`方法
-3. 创建一个线程`SubThread s1 = new SubThread`
-4. 开始线程`s1.start();`
-3. 设置线程名称`s1.setName('newThreadName')`
-4. 打印纯程名称`System.out.println(Thread.currentThread().getName())`
-5. 线程休眠`Thread.sleep(500);`
-6. 重启休眠线程`new SleepThread().start()`
-7. 通过`Runnable`接口实现另一种线程`public class SubThread2 implements Runnable{ public void run(){}}`,重写`run`方法来实现 
-8. 建立`Runnable`接口实现的线程`n2 = new SubThread2()`
-9. 调用`Thread`来启动`Thread s2 = new Thread(n2)`
-10. 为匿名内部类创建线程`new Thread(){ public void run(){} }.start()`
-11. 为匿名内部类创建线程`Runnable r = new Runnable(){ public void run(){} }; new Thread(r).start();`
-12. 为匿名内部类创建线程`new Thread(new Runnable(){ public void run(){}}).start()`
-13. 创建线程池`import java.util.concurrent.ExecutorService;`
-14. 创建线程池`ExecotorService es = Executors.newFixedThreadPool(2)`
-15. 添加线程到线程池`es.submit(new Thread(new Runnable(){ public void run(){}}))`,submit会返回一个线程结果的`Future`类型
-16. 线程返回值`public class ThreadCall implements Callble<string>{ public void call(){ return "abc";}}`
-17. 从提交的线程里获取返回值`Future<String> t = es.submit(new ThreadCall());`
-18. 从提交的线程里获取返回值`String f = t.get();`
-19. 销毁线程池`es.shutdown();`
+    - 创建一个线程,继承线程主方法`class SubThread extend Thread{}`
+    - 重写`class SubThread extend Thread{ public void run(){}}`方法
+    - 创建一个线程`SubThread s1 = new SubThread`
+    - 开始线程`s1.start();`
+    - 设置线程名称`s1.setName('newThreadName')`
+    - 打印纯程名称`System.out.println(Thread.currentThread().getName())`
+    - 线程休眠`Thread.sleep(500);`
+    - 重启休眠线程`new SleepThread().start()`
+    - 通过`Runnable`接口实现另一种线程`public class SubThread2 implements Runnable{ public void run(){}}`,重写`run`方法来实现 
+    - 建立`Runnable`接口实现的线程`n2 = new SubThread2()`
+    - 调用`Thread`来启动`Thread s2 = new Thread(n2)`
+    - 为匿名内部类创建线程`new Thread(){ public void run(){} }.start()`
+    - 为匿名内部类创建线程`Runnable r = new Runnable(){ public void run(){} }; new Thread(r).start();`
+    - 为匿名内部类创建线程`new Thread(new Runnable(){ public void run(){}}).start()`
+    - 创建线程池`import java.util.concurrent.ExecutorService;`
+    - 创建线程池`ExecotorService es = Executors.newFixedThreadPool(2)`
+    - 添加线程到线程池`es.submit(new Thread(new Runnable(){ public void run(){}}))`,submit会返回一个线程结果的`Future`类型
+    - 线程返回值`public class ThreadCall implements Callble<string>{ public void call(){ return "abc";}}`
+    - 从提交的线程里获取返回值`Future<String> t = es.submit(new ThreadCall());`
+    - 从提交的线程里获取返回值`String f = t.get();`
+    - 销毁线程池`es.shutdown();`
 
 * 多线程安全
     
-1. 当全部线程同时操作一个数据时,可能会引出安全问题.
-2. 使用synchronized包含同步操作数据,会保证数据的安全`Object obj = new Object();synchronized(/*需要任何对象*/obj){ num-- }`
-3. 使用`synchronized`会使运行速度下降.
-4. `synchronized(obj)`,其中`obj`且来锁数据的同步锁.通过该锁来实现线程同步操作
-5. 通过`synchronized`声明同步方法`public synchronized void fn(){}`,在声明方法中,同步锁对象为`this`本身
-6. 静态方法中的synchronized同步锁为类名下的class属性`className.class`
-7. 通过`Lock`接口锁来锁定数据.实现同步`java.util.concurrent.locks.Lock; public class ThreadSub implements Runnable{}`
-8. 通过`Lock`接口锁来锁定数据.实现同步`private Lock lock = new ReentrantLock()`
-9. 通过`Lock`接口锁来锁定数据.实现同步`lock.lock()`
-9. 释放`Lock`数据锁`lock.unlock();`线程进入同步锁线程未销毁将不会释放锁.
-10. 线程等待`sycnhronized(obj){ obj.wait(); }`
-10. 线程唤醒`sycnhronized(obj){ obj.notify(); }`
-    
+    - 当全部线程同时操作一个数据时,可能会引出安全问题.
+    - 使用synchronized包含同步操作数据,会保证数据的安全`Object obj = new Object();synchronized(/*需要任何对象*/obj){ num-- }`
+    - 使用`synchronized`会使运行速度下降.
+    - `synchronized(obj)`,其中`obj`且来锁数据的同步锁.通过该锁来实现线程同步操作
+    - 通过`synchronized`声明同步方法`public synchronized void fn(){}`,在声明方法中,同步锁对象为`this`本身
+    - 静态方法中的synchronized同步锁为类名下的class属性`className.class`
+    - 通过`Lock`接口锁来锁定数据.实现同步`java.util.concurrent.locks.Lock; public class ThreadSub implements Runnable{}`
+    - 通过`Lock`接口锁来锁定数据.实现同步`private Lock lock = new ReentrantLock()`
+    - 通过`Lock`接口锁来锁定数据.实现同步`lock.lock()`
+    - 释放`Lock`数据锁`lock.unlock();`线程进入同步锁线程未销毁将不会释放锁.
+    - 线程等待`sycnhronized(obj){ obj.wait(); }`
+    - 线程唤醒`sycnhronized(obj){ obj.notify(); }`
+        
 * 数据库
-
-    1. 排序查询`order by id desc`
-    2. 聚合查询`select count(*) as 'count' FROM database;`结果`count:10`
-    3. 分组查询`select sum(money),zname from databasename where zname like'%支出%' group by zname order by gesum desc`
+    
+    - 排序查询`order by id desc`
+    - 聚合查询`select count(*) as 'count' FROM database;`结果`count:10`
+    - 分组查询`select sum(money),zname from databasename where zname like'%支出%' group by zname order by gesum desc`
 
 ### 2018-8-6
 
 * 反射
 
-    1. 当类启动时,会被类载入内存,并创建一个字节码对象
-    2. 检查类的内部结构,然后根据变量和方法分配内存.
-    3. 解析类,将类的二进制数据的符号引用转为直接引用.比如`a=10`转为`&1010`
-    4. 初始化类.进入堆栈.
-    5. Bootstrap ClassLoader 根加载器 -> 也被称为引导类加载器，负责Java核心类的加载如System,String等。在JDK中JRE的lib目录下rt.jar文件中
-    6. Extension ClassLoader扩展加载器 -> 负责JRE的扩展目录中jar包的加载。在JDK中JRE的lib目录下ext目录
-    7. System ClassLoader 系统加载类 -> 责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar
-    8. *反射机制*JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象。
-    9. 反射类,调用类的父类getClass:`new Dome().getClass()` 
-    10. 反射类,调用类的静态类名class:`new Dome.class` 
-    11. 反射类,调用类的静态方法forName:`Class reflex = Class.forName("cn.ddweb.com.demo")`,需要传入包名
-    12. 获取所有公共构造方法`Constructor[] reflexCs = reflex.getConstructors()` 
-    13. 获取空参构造方法`Constructor reflexC = reflex.getConstructor()` 
-    14. 获取有参构造方法`Constructor reflexC = reflex.getConstructor(String.class,int.class)` .根据有参构造方法需要的参数传入对应的参数,但只能传类型的静态类`.class`
-    15. 运行获得的构造方法`reflexC.newInstance("string",100)`
-    16. 快捷运行构造方法`new Dome().getClass().newInstance()`,使用快捷运行的前提是方法有公共的构造方法`public Demo(){}`
-    17. 获取私有在类的所有构造方法`Constructor[] cons = reflex.getDeclaredConstructors()`
-    18. 获取私有在类的构造方法`Constructor con = reflex.getDeclaredConstructor()`
-    19. 暴力反射,使JAVA跳过权限检查强制运行私有方法`con.setAccessible(true);`
-    20. 获取所有成员变量`Field[] fs = reflex.getFields()`
-    21. 获取变量`Field f = reflex.getField("cat")`
-    22. 获取所有成员方法`Method[] ms = reflex.getMethods()`
-    23. 获取方法`Method m = reflex.getMethod("printCat")`
-    24. 运行获取到的方法`m.invoke(reflex.newInstance());`
-    25. 获取成员方法并运行`Method method = c.getMethod("sleep", String.class,int.class,double.class);`
-    26. 反射集合类并向里边添加两种数据`ArrarList<String> a = new ArrayList<String>();`
-    27. 反射集合类并向里边添加两种数据`a.add("a")`
-    28. 反射集合类并向里边添加两种数据`Class arr = a.getClass()`
-    29. 反射集合类并向里边添加两种数据`Method am = arr.getMethod("add",Object.class)`
-    30. 反射集合类并向里边添加两种数据`am.invoke(arr,1500)`
-    31. 通过配置文件运行反射功能->创建文件流`FileReader fr = new FileReader("propertis.config")`
-    31. 通过配置文件运行反射功能->创建集合`Properties ps = new Properties()`
-    31. 通过配置文件运行反射功能->载入到集合`ps.load(fr)`
-    31. 通过配置文件运行反射功能->关闭文件流`fr.close()`
-    31. 通过配置文件运行反射功能->取得类名`String className = ps.getProperty("className")`
-    31. 通过配置文件运行反射功能->取得方法名`String methodName = ps.getProperty("methodName")`
-    31. 通过配置文件运行反射功能->反射该类`Class c = Class.forName(className)`
-    31. 通过配置文件运行反射功能->取得构造方法`Object obj = c.newInstance()`
-    31. 通过配置文件运行反射功能->取得方法`Method m = c.getMethod(methodName)`
-    31. 通过配置文件运行反射功能->执行方法`m.invoke(obj)`
+    - 当类启动时,会被类载入内存,并创建一个字节码对象
+    - 检查类的内部结构,然后根据变量和方法分配内存.
+    - 解析类,将类的二进制数据的符号引用转为直接引用.比如`a=10`转为`&1010`
+    - 初始化类.进入堆栈.
+    - Bootstrap ClassLoader 根加载器 -> 也被称为引导类加载器，负责Java核心类的加载如System,String等。在JDK中JRE的lib目录下rt.jar文件中
+    - Extension ClassLoader扩展加载器 -> 负责JRE的扩展目录中jar包的加载。在JDK中JRE的lib目录下ext目录
+    - System ClassLoader 系统加载类 -> 责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar
+    - *反射机制*JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象。
+    - 反射类,调用类的父类getClass:`new Dome().getClass()` 
+    - 反射类,调用类的静态类名class:`new Dome.class` 
+    - 反射类,调用类的静态方法forName:`Class reflex = Class.forName("cn.ddweb.com.demo")`,需要传入包名
+    - 获取所有公共构造方法`Constructor[] reflexCs = reflex.getConstructors()` 
+    - 获取空参构造方法`Constructor reflexC = reflex.getConstructor()` 
+    - 获取有参构造方法`Constructor reflexC = reflex.getConstructor(String.class,int.class)` .根据有参构造方法需要的参数传入对应的参数,但只能传类型的静态类`.class`
+    - 运行获得的构造方法`reflexC.newInstance("string",100)`
+    - 快捷运行构造方法`new Dome().getClass().newInstance()`,使用快捷运行的前提是方法有公共的构造方法`public Demo(){}`
+    - 获取私有在类的所有构造方法`Constructor[] cons = reflex.getDeclaredConstructors()`
+    - 获取私有在类的构造方法`Constructor con = reflex.getDeclaredConstructor()`
+    - 暴力反射,使JAVA跳过权限检查强制运行私有方法`con.setAccessible(true);`
+    - 获取所有成员变量`Field[] fs = reflex.getFields()`
+    - 获取变量`Field f = reflex.getField("cat")`
+    - 获取所有成员方法`Method[] ms = reflex.getMethods()`
+    - 获取方法`Method m = reflex.getMethod("printCat")`
+    - 运行获取到的方法`m.invoke(reflex.newInstance());`
+    - 获取成员方法并运行`Method method = c.getMethod("sleep", String.class,int.class,double.class);`
+    - 反射集合类并向里边添加两种数据`ArrarList<String> a = new ArrayList<String>();`
+    - 反射集合类并向里边添加两种数据`a.add("a")`
+    - 反射集合类并向里边添加两种数据`Class arr = a.getClass()`
+    - 反射集合类并向里边添加两种数据`Method am = arr.getMethod("add",Object.class)`
+    - 反射集合类并向里边添加两种数据`am.invoke(arr,1500)`
+    - 通过配置文件运行反射功能->创建文件流`FileReader fr = new FileReader("propertis.config")`
+    - 通过配置文件运行反射功能->创建集合`Properties ps = new Properties()`
+    - 通过配置文件运行反射功能->载入到集合`ps.load(fr)`
+    - 通过配置文件运行反射功能->关闭文件流`fr.close()`
+    - 通过配置文件运行反射功能->取得类名`String className = ps.getProperty("className")`
+    - 通过配置文件运行反射功能->取得方法名`String methodName = ps.getProperty("methodName")`
+    - 通过配置文件运行反射功能->反射该类`Class c = Class.forName(className)`
+    - 通过配置文件运行反射功能->取得构造方法`Object obj = c.newInstance()`
+    - 通过配置文件运行反射功能->取得方法`Method m = c.getMethod(methodName)`
+    - 通过配置文件运行反射功能->执行方法`m.invoke(obj)`
     
 * transient关键字,用来修饰临时变量,一些敏感信息,此变量不会被序列化
     
@@ -733,7 +735,7 @@ Override Overload, 重写,重载.
 - JDBC-Utils工具类
 
     - 
-    
+
 * 扫描系统输入`Scanner sc = new Scanner(System.in)`,系统输入`System.in`,系统输出`System.out`
     
 ### JAVA学习 2018.1.17
