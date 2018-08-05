@@ -622,42 +622,42 @@ Override Overload, 重写,重载.
 
 * 多线程
 
-    1. 创建一个线程,继承线程主方法`class SubThread extend Thread{}`
-    2. 重写`class SubThread extend Thread{ public void run(){}}`方法
-    3. 创建一个线程`SubThread s1 = new SubThread`
-    4. 开始线程`s1.start();`
-    3. 设置线程名称`s1.setName('newThreadName')`
-    4. 打印纯程名称`System.out.println(Thread.currentThread().getName())`
-    5. 线程休眠`Thread.sleep(500);`
-    6. 重启休眠线程`new SleepThread().start()`
-    7. 通过`Runnable`接口实现另一种线程`public class SubThread2 implements Runnable{ public void run(){}}`,重写`run`方法来实现 
-    8. 建立`Runnable`接口实现的线程`n2 = new SubThread2()`
-    9. 调用`Thread`来启动`Thread s2 = new Thread(n2)`
-    10. 为匿名内部类创建线程`new Thread(){ public void run(){} }.start()`
-    11. 为匿名内部类创建线程`Runnable r = new Runnable(){ public void run(){} }; new Thread(r).start();`
-    12. 为匿名内部类创建线程`new Thread(new Runnable(){ public void run(){}}).start()`
-    13. 创建线程池`import java.util.concurrent.ExecutorService;`
-    14. 创建线程池`ExecotorService es = Executors.newFixedThreadPool(2)`
-    15. 添加线程到线程池`es.submit(new Thread(new Runnable(){ public void run(){}}))`,submit会返回一个线程结果的`Future`类型
-    16. 线程返回值`public class ThreadCall implements Callble<string>{ public void call(){ return "abc";}}`
-    17. 从提交的线程里获取返回值`Future<String> t = es.submit(new ThreadCall());`
-    18. 从提交的线程里获取返回值`String f = t.get();`
-    19. 销毁线程池`es.shutdown();`
+1. 创建一个线程,继承线程主方法`class SubThread extend Thread{}`
+2. 重写`class SubThread extend Thread{ public void run(){}}`方法
+3. 创建一个线程`SubThread s1 = new SubThread`
+4. 开始线程`s1.start();`
+3. 设置线程名称`s1.setName('newThreadName')`
+4. 打印纯程名称`System.out.println(Thread.currentThread().getName())`
+5. 线程休眠`Thread.sleep(500);`
+6. 重启休眠线程`new SleepThread().start()`
+7. 通过`Runnable`接口实现另一种线程`public class SubThread2 implements Runnable{ public void run(){}}`,重写`run`方法来实现 
+8. 建立`Runnable`接口实现的线程`n2 = new SubThread2()`
+9. 调用`Thread`来启动`Thread s2 = new Thread(n2)`
+10. 为匿名内部类创建线程`new Thread(){ public void run(){} }.start()`
+11. 为匿名内部类创建线程`Runnable r = new Runnable(){ public void run(){} }; new Thread(r).start();`
+12. 为匿名内部类创建线程`new Thread(new Runnable(){ public void run(){}}).start()`
+13. 创建线程池`import java.util.concurrent.ExecutorService;`
+14. 创建线程池`ExecotorService es = Executors.newFixedThreadPool(2)`
+15. 添加线程到线程池`es.submit(new Thread(new Runnable(){ public void run(){}}))`,submit会返回一个线程结果的`Future`类型
+16. 线程返回值`public class ThreadCall implements Callble<string>{ public void call(){ return "abc";}}`
+17. 从提交的线程里获取返回值`Future<String> t = es.submit(new ThreadCall());`
+18. 从提交的线程里获取返回值`String f = t.get();`
+19. 销毁线程池`es.shutdown();`
 
 * 多线程安全
     
-    1. 当全部线程同时操作一个数据时,可能会引出安全问题.
-    2. 使用synchronized包含同步操作数据,会保证数据的安全`Object obj = new Object();synchronized(/*需要任何对象*/obj){ num-- }`
-    3. 使用`synchronized`会使运行速度下降.
-    4. `synchronized(obj)`,其中`obj`且来锁数据的同步锁.通过该锁来实现线程同步操作
-    5. 通过`synchronized`声明同步方法`public synchronized void fn(){}`,在声明方法中,同步锁对象为`this`本身
-    6. 静态方法中的synchronized同步锁为类名下的class属性`className.class`
-    7. 通过`Lock`接口锁来锁定数据.实现同步`java.util.concurrent.locks.Lock; public class ThreadSub implements Runnable{}`
-    8. 通过`Lock`接口锁来锁定数据.实现同步`private Lock lock = new ReentrantLock()`
-    9. 通过`Lock`接口锁来锁定数据.实现同步`lock.lock()`
-    9. 释放`Lock`数据锁`lock.unlock();`线程进入同步锁线程未销毁将不会释放锁.
-    10. 线程等待`sycnhronized(obj){ obj.wait(); }`
-    10. 线程唤醒`sycnhronized(obj){ obj.notify(); }`
+1. 当全部线程同时操作一个数据时,可能会引出安全问题.
+2. 使用synchronized包含同步操作数据,会保证数据的安全`Object obj = new Object();synchronized(/*需要任何对象*/obj){ num-- }`
+3. 使用`synchronized`会使运行速度下降.
+4. `synchronized(obj)`,其中`obj`且来锁数据的同步锁.通过该锁来实现线程同步操作
+5. 通过`synchronized`声明同步方法`public synchronized void fn(){}`,在声明方法中,同步锁对象为`this`本身
+6. 静态方法中的synchronized同步锁为类名下的class属性`className.class`
+7. 通过`Lock`接口锁来锁定数据.实现同步`java.util.concurrent.locks.Lock; public class ThreadSub implements Runnable{}`
+8. 通过`Lock`接口锁来锁定数据.实现同步`private Lock lock = new ReentrantLock()`
+9. 通过`Lock`接口锁来锁定数据.实现同步`lock.lock()`
+9. 释放`Lock`数据锁`lock.unlock();`线程进入同步锁线程未销毁将不会释放锁.
+10. 线程等待`sycnhronized(obj){ obj.wait(); }`
+10. 线程唤醒`sycnhronized(obj){ obj.notify(); }`
     
 * 数据库
 
