@@ -664,7 +664,77 @@ Override Overload, 重写,重载.
     1. 排序查询`order by id desc`
     2. 聚合查询`select count(*) as 'count' FROM database;`结果`count:10`
     3. 分组查询`select sum(money),zname from databasename where zname like'%支出%' group by zname order by gesum desc`
+
+### 2018-8-6
+
+* 反射
+
+    1. 当类启动时,会被类载入内存,并创建一个字节码对象
+    2. 检查类的内部结构,然后根据变量和方法分配内存.
+    3. 解析类,将类的二进制数据的符号引用转为直接引用.比如`a=10`转为`&1010`
+    4. 初始化类.进入堆栈.
+    5. Bootstrap ClassLoader 根加载器 -> 也被称为引导类加载器，负责Java核心类的加载如System,String等。在JDK中JRE的lib目录下rt.jar文件中
+    6. Extension ClassLoader扩展加载器 -> 负责JRE的扩展目录中jar包的加载。在JDK中JRE的lib目录下ext目录
+    7. System ClassLoader 系统加载类 -> 责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar
+    8. *反射机制*JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象。
+    9. 反射类,调用类的父类getClass:`new Dome().getClass()` 
+    10. 反射类,调用类的静态类名class:`new Dome.class` 
+    11. 反射类,调用类的静态方法forName:`Class reflex = Class.forName("cn.ddweb.com.demo")`,需要传入包名
+    12. 获取所有公共构造方法`Constructor[] reflexCs = reflex.getConstructors()` 
+    13. 获取空参构造方法`Constructor reflexC = reflex.getConstructor()` 
+    14. 获取有参构造方法`Constructor reflexC = reflex.getConstructor(String.class,int.class)` .根据有参构造方法需要的参数传入对应的参数,但只能传类型的静态类`.class`
+    15. 运行获得的构造方法`reflexC.newInstance("string",100)`
+    16. 快捷运行构造方法`new Dome().getClass().newInstance()`,使用快捷运行的前提是方法有公共的构造方法`public Demo(){}`
+    17. 获取私有在类的所有构造方法`Constructor[] cons = reflex.getDeclaredConstructors()`
+    18. 获取私有在类的构造方法`Constructor con = reflex.getDeclaredConstructor()`
+    19. 暴力反射,使JAVA跳过权限检查强制运行私有方法`con.setAccessible(true);`
+    20. 获取所有成员变量`Field[] fs = reflex.getFields()`
+    21. 获取变量`Field f = reflex.getField("cat")`
+    22. 获取所有成员方法`Method[] ms = reflex.getMethods()`
+    23. 获取方法`Method m = reflex.getMethod("printCat")`
+    24. 运行获取到的方法`m.invoke(reflex.newInstance());`
+    25. 获取成员方法并运行`Method method = c.getMethod("sleep", String.class,int.class,double.class);`
+    26. 反射集合类并向里边添加两种数据`ArrarList<String> a = new ArrayList<String>();`
+    27. 反射集合类并向里边添加两种数据`a.add("a")`
+    28. 反射集合类并向里边添加两种数据`Class arr = a.getClass()`
+    29. 反射集合类并向里边添加两种数据`Method am = arr.getMethod("add",Object.class)`
+    30. 反射集合类并向里边添加两种数据`am.invoke(arr,1500)`
+    31. 通过配置文件运行反射功能->创建文件流`FileReader fr = new FileReader("propertis.config")`
+    31. 通过配置文件运行反射功能->创建集合`Properties ps = new Properties()`
+    31. 通过配置文件运行反射功能->载入到集合`ps.load(fr)`
+    31. 通过配置文件运行反射功能->关闭文件流`fr.close()`
+    31. 通过配置文件运行反射功能->取得类名`String className = ps.getProperty("className")`
+    31. 通过配置文件运行反射功能->取得方法名`String methodName = ps.getProperty("methodName")`
+    31. 通过配置文件运行反射功能->反射该类`Class c = Class.forName(className)`
+    31. 通过配置文件运行反射功能->取得构造方法`Object obj = c.newInstance()`
+    31. 通过配置文件运行反射功能->取得方法`Method m = c.getMethod(methodName)`
+    31. 通过配置文件运行反射功能->执行方法`m.invoke(obj)`
     
+* transient关键字,用来修饰临时变量,一些敏感信息,此变量不会被序列化
+    
+* JDBC数据库
+    
+    - 使用MYSQL驱动管理包`DriverManager`
+    - 注册驱动`Class.forName("com.mysql.cj.jdbc.Driver")`,使用反射类型,是为了防止驱动被重复注册
+    - 定义连接地址`String url = "jdbc:mysql://localhost:3306/jdbc_learn?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"`
+    - 连接数据库`Connection mysql = DriverMnager.getConnection(url,user,password)`
+    - 获得语句执行声明平台`Statement mysqlStat = mysql.createStatement()`
+    - 执行语句,会返回插入数据的ID`int id = mysqlStat.executeUpdata("INSERT INTO xxxxxxx")`
+    - 释放资源`mysql.close()`,`mysqlStat.close()`
+    - 查询数据库`ResultSet rs= mysqlStat.executeQuery(sql)`
+    - 遍历结果集`while(rs.next()){ System.out.println(rs.getInt(`sid`)+rs.getDouble(`sid`))}`
+    - 关闭结果集`rs.close();`
+    - 查询语句点位符`select ?,? from db;`
+    - 调用PrepareStatement设置占位符`PerpareStatement pst = mysqlConnet.prepareStatement(sql)`
+    - 设置占位符`pst.setObject(1,user)`,`pst.setObject(2,pwd)`
+    - 直接执行PerpareStatement的SQL语句`pst.executeUpdate();`
+    - 直接执行PerpareStatement的查询`ResultSet rs = pst.executeQuery();`
+
+- JDBC-Utils工具类
+
+    - 
+    
+* 扫描系统输入`Scanner sc = new Scanner(System.in)`,系统输入`System.in`,系统输出`System.out`
     
 ### JAVA学习 2018.1.17
 > `F:\video\Java\北京黑马java28期基础班+就业班\01_2016年北京黑马最新基础班\day29\day29_video` 

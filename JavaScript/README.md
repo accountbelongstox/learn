@@ -1277,13 +1277,38 @@ var router = new VueRouter({
 
 * * *
 
+## TypeScript
 
-### 
+    # declare module 
+    # module
+    # namespace
+    # `/// <reference path="test2.ts" />`
 
+## WebPack
+
+    # 安装
+        # `npm install webpack -g`
+        # `npm install webpack-cli -g`
+        # `npm install webpack --save-dev`
+        # `npm install webpack-cli --save-dev`
+        
+    # bable
+        
+        # 安装`cnpm install babel-loader babel-core --save-dev`
+        # 安装`cnpm install @babel-preset-env --save-dev`
+        # 编译TypeScript
+            
+            # `cnpm i typescript ts-loader awesome-typescript-loader --save-dev`
+
+    # typeings
+        
+        # 安装`npm i -g typings`,`npm i typings --save-dev`
+        # 安装`typings install lodash --save`
+        
 # 学习进度
 
-* TypeScrpt`https://www.imooc.com/video/13515`
-* Webpack`F:\video\javascript-nodejs\由浅入深全面学习 Webpack 3.0`
-* Vue`F:\video\javascript-nodejs\前端课程大全\0x35：【合集】VueJS 2.0\D20170806：VueJS 2.0就业班【基础+项目】\Vue.js2.0 Day3【基础】\视频`
-* JS`F:\BaiduYunDownload\前端课程大全\0x02：HTML5 CSS3详解\HTML5和CSS3 (50).mp4`
+    * `https://www.imooc.com/video/13515`
+    * `F:\video\javascript-nodejs\由浅入深全面学习 Webpack 3.0\3-6`
+    * `F:\video\javascript-nodejs\前端课程大全\0x35：【合集】VueJS 2.0\D20170806：VueJS 2.0就业班【基础+项目】\Vue.js2.0 Day3【基础】\视频`
+    * `F:\BaiduYunDownload\前端课程大全\0x02：HTML5 CSS3详解\HTML5和CSS3 (50).mp4`
 

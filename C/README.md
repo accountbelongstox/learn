@@ -539,10 +539,63 @@ void main(){
 6. 继续刷题  
 4. 迷宫实现，走出来  (struct int x,int y)
 
+### 2018-8-6
+
+* 定义别名`typedef int INT`,将int的别名定义为INT
+* 指针
+    
+    1. 指针必须先初始化`int *p` 否则会引发错误 
+    2. 指针是由类型和步长决定的一个数据类型.
+    3. 由float定义指针类型,则搜索内存时会强制向前8个字节截取内存数据`float *p = &num`,根据指针取出数据`*p2`
+    4. 函数传的参数会有副本机制,复制的是数据.如果参数以指针由复制指针地址.
+    5. 任何指针都是4个字节32位.
+    6. void *p = &num可以存任何类型的地址.但无法取出值`*void()`.因为没有类型
+    7. void可以强转为其他类型再取值 `*((double *)p)`
+    8. 空指针,表示没有存储地址`double *p = NULL`.空指针实际上是`void *0`.防止指针随便指向.
+    9. 定义多个指针`double * pa, pb, pc;`
+    10. 通过scanf初始化指针`scanf("%p",&p);`
+    
+    
+* 内存搜索代码
+
+```
+int n = 88;
+//通过内存的起始地址和结束地址搜索内存
+//char类型一次只移动一个字节
+for (char *p = 0xae0000; p < 0xae1000; p++) {
+	//将类型由char转换为int
+	int *xp = p;
+	if (*xp == n) {
+		*xp = 100;
+	}
+}
+```
+
+* 桌面显示图片代码
+
+```
+	int i = 0;
+	while (i) {
+		//获取桌面
+		HWND win = GetDesktopWinodw();
+		//获取桌面显示 
+		HDC windc = GetWindowDC(win);
+		//获取位图句柄
+		HDC Memdc = CreateCompatibleDC(0);
+		//导入图片
+		HBITMAP bit = (HBITMAP)LoadImage(win, TEXT("1.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+		//设置显示什么
+		SelectObject(Memdc,bit);
+		//显示 
+		BitBlt(windc, i++, i++, 400, 400, Memdc, 0, 0, SRCCOPY);
+	}
+```
+
+        
 ### 作业
 - 写一个移动鼠标并点击的案例
 
 ### 学习进度
-- `H:\video\C-NET\C++尹成主讲 视频、代码、文档、工具\3.27---5.5\20150414`
+- `H:\video\C-NET\C++尹成主讲 视频、代码、文档、工具\3.27---5.5\20150417`
 - `D:\workroom\study\C\C程序设计语言（第2版·新版）.pdf`,`37 page`
 - `H:\video\基础教学\60课时学完数学\【3605】60课时学完高中数学 60讲\第01讲集合的含义表示与基本运算（上）`

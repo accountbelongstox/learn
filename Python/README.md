@@ -416,6 +416,7 @@ if __name__ == "__main__":
 15. 登陆后台`/admin/`
 
 #### Django-admin
+
 - 查看帮助`django-admin help ["具体命令"]`
 - 创建项目`startproject`
 - 创建APP`startapp`
@@ -434,6 +435,8 @@ if __name__ == "__main__":
 - 导出数据`dumpdata`
 - 导入数据`loaddata`
 - 查看你的配置和DJANGO默认配置的不同之处`diffsettings`
+- Shell
+
 
 #### Manage.py工程管理工具,是对`django-admin`的包装
 1. 运行项目`python manage.py runserver 8080`,默认为8000端口
@@ -511,6 +514,6 @@ Boolean |布尔类型(0代表false,代表true)
 1. 使用纯python数据驱动`PyMysql`
 
 * 学习树
-	* `E:\video\Python\05.python工程师全栈开发\02.第二阶段 PythonWeb开发\03.PythonWeb框架django基础视频教程 23课`
+	* `E:\video\Python\05.python工程师全栈开发\02.第二阶段 PythonWeb开发\03.PythonWeb框架django基础视频教程 23课\jangojc14.mp4`
 	* `F:\BaiduYunDownload\pyqt课程\1 第一套课程 使用pyqt开发windows gui程序及打包\04.pyqt在mac os系统下的体验.mp4`
     * ``

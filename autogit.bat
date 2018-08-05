@@ -13,5 +13,5 @@ set "commit=%date:~0,10%"
 goto git
 :git
 git commit -m "%commit%"
-git push
+git push -u origin master
 cmd
