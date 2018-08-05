@@ -1,5 +1,7 @@
 # Python
 
+## 基本
+
 - 安装
     - eclipse 安装python
         - help->new software->http://dev.python.org/updates
@@ -543,7 +545,9 @@ Boolean |布尔类型(0代表false,代表true)
 
 * * *
 
-1. 使用纯python数据驱动`PyMysql`
+- 使用纯python数据驱动`PyMysql`
+
+
 
 * 学习树
 	* `E:\video\Python\05.python工程师全栈开发\02.第二阶段 PythonWeb开发\03.PythonWeb框架django基础视频教程 23课\jangojc14.mp4`
