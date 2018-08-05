@@ -1,29 +1,26 @@
-# eclipse 安装python
-> help->new software->http://dev.python.org/updates
-# python包
-## built-in package 自带包
-## 额外package - pip
-> `easy_install`安装`pip`
-```
-pip install requests
-```
+# Python
 
-- 升级`python -m pip install --upgrade pip`
+- 安装
+    - eclipse 安装python
+        - help->new software->http://dev.python.org/updates
 
-# 注释
-> 以#号开头.
-```
-# 这是一段dome的注释
-```
-# 缩进
+- pip
+    - 安装`easy_install install pip`
+    - 安装`pip install requests`
+    - 升级`python -m pip install --upgrade pip`
+- 基础
+    - 注释:以#号开头.
+    - `tab`缩进
 
-# 数据类型
-### 字符串
-> 字符串,单引号,双引号,三引号
+- 数据类型
+    - 字符串
+        - 单引号,双引号`'srting'`
+        - 三引号用来多行文本
 ```
 '''hello
  word'''
 ```
+
 > format 字符串
 ```
 print("{0} as {1}".format("name",str(23)))
@@ -466,11 +463,14 @@ if __name__ == "__main__":
         - `reverse()`反向
         - `distinct()`从返回结果中剔除重复记录
         - `values()`返回一个ValuesQuerySet 一个特殊的QuerySet,运行后并不是一系列model的实例化对象,而是一个可以迭代的序列
+            - 例如:`User.objects.filter(user='admin').values('username')`
+            - 结果:`{username:admin}`
         - `values_list()`和values一样,但返回元组
         - `count()`返回数量
         - `first()`第一条数据,等价于[:1][0]
         - `last()`最后一条,等价于[:1][0]
         - `exists()`是否存在,返回boolean
+        - `raw(sql)`原生查询
 
 #### Manage.py工程管理工具,是对`django-admin`的包装
 1. 运行项目`python manage.py runserver 8080`,默认为8000端口
