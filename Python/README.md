@@ -557,10 +557,35 @@ Boolean |布尔类型(0代表false,代表true)
 
 - 使用纯python数据驱动`PyMysql`
 
-- 模版
+- 模版标签
+    - Doc[!Django官方文档](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
+    - 模版变量Template("<a></a>"),在modules里定义
+    - 包含另一个模版`{% include 'header.html' %}`,`{% include 'nav/template/header.html' %}`
+    - 继承模版`{% extends "base.html" %}`,并定义块`{% block title %}{{ section.title }}{% endblock %}`,在子模版中重写块的内容 `{% block title %}My amazing blog{% endblock %}`
+    - 在子模版使用父模版的内容`{% block title %}{{ block.super }}{% endblock %}`
     - 判断`{% if name == 'admin' %} a {% else %} {% endif %}`支待`in`关键字
     - 比较`{% ifequal %}`只支持整数小数等,不支持元组,字典,列表
     - 循环`{% for item in list %} {% endof %}`
+        - `forloop.counter` 当前循环计数`{% for item in list %} forloop.counter {% endof %}`
+        - `forloop.counter0` 当前循环计数从0开始
+        - `forloop.revcounter`倒计数
+        - `forloop.revcounter0`
+        - `forloop.first` bool判断是否第一个
+        - `forloop.last` 
+        - `forloop.parentloop` 用于嵌套循环,然后得到父级的上述参数
+    - 循环时重复给值 `{% cycle rowvalue1 rowvalue2 %}`
+    - 单行注释`{# #}`,多行注释`{% comment %}`
+    - 生成csrf_token`{% csrf_token %}`防跨站攻击
+    - 显示调试信息`{% debug %}`
+    - 过滤`{% filter force_escape|lower %}{% endfilter %}`将字符转小写
+    - 自动转义`{% autoescape %}{% firstof var1 var2 var3 "<strong>fallback value</strong>" %}{% endautoescape %}`
+    - 输出第一个值不等于False的变量`{% firstof var1 var2 var3 "<strong>fallback value</strong>" %}`
+    - 显示调试信息`{% debug %}`
+    - 加载标签库`{% load somelibrary package.otherlibrary %}`
+    - 当前时间` {% now "jS F Y H:i" %}`
+    - 显示一个url`{% url 'showUrl' v1 v2 %}`如果有参数跟着参数,URL在`urls.py`里定义`path('', include('maobanapp.urls'),name='showUrl'),`
+    - 给变量命令别名`{% with total=business.employees.count %} {{ total }} employee{{ total|pluralize }} {% endwith %}`
+    - 禁止解析内容`{% verbatim %} {{if dying}}Still alive.{{/if}} {% endverbatim %}`
 
 * 学习树
 	* `E:\video\Python\05.python工程师全栈开发\02.第二阶段 PythonWeb开发\03.PythonWeb框架django基础视频教程 23课\jangojc14.mp4`
