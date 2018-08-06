@@ -743,9 +743,45 @@ Override Overload, 重写,重载.
     - 取得类的加载类`jdbcProClass.class.getClassLoader()`
     - 返回指定要读取的资源流`getResourceAsStream("database.properties")`,返回值为`InputStream`.方法会从类的当前路径读取
     - 加载流`InputStream in = PropertiesDemo.class.getClassLoader().getResourceAsStream("database.properties");`
-    - fs.
 
 * 扫描系统输入`Scanner sc = new Scanner(System.in)`,系统输入`System.in`,系统输出`System.out`
+
+- 网张编程
+    - IPv4表示4字节的二进制来存储IP地址,为了便于记忆,转为4个十进制来表示,每个十进制占1个字节`192.168.0.1`
+    - 程序对外的逻辑端口是由操作系统自动分配.1024之前的端口不能用.
+    - 取得本地主机名及IP地址`InetAddress inet = InetAddress.getLocalHost().getLocalHost();`,输出`DESKTOP-39IK6NT/192.168.0.2`
+    - 取得IP地址`InetAddress.getLocalHost().getHostAddress()`
+    - 取得主机名`InetAddress.getLocalHost().getHostName()`
+    - 传递主机名取得IP`InetAddress.getByName("www.baidu.com");`
+    - UDP协议
+        - 将数据先转为字节`byte[] data = "你好这是数据".getBytes()`
+        - 取得IP地址`InetAddress inet = InetAddress.getByName("localhost");`
+        - 数据打包DatagramPacket:`DatagramPacket dp = new DatagramPacket(data,data.length,inet,6000);`
+        - 数据发送DatagramSocket:`DatagramSocket sp = new DatagramSocket();`
+        - 数据发送`sp.send(dp);`,送闭套接字`sp.close();`
+        - 接收端口绑定端口`DatagramSocket ds = new DatagramSocket(6000);`
+        - 创建接收字节数组(一般为64字节)`byte[] data = new byte[1024*64];`
+        - 创建空数据包`DatagramPacket dp = new DatagramPacket(data, data.length);`
+        - 准备接收数据`ds.receive(dp);`receive会有线程等待,在没有接收到数据前会一直等待.
+        - 获取发送端IP对象`String ip=dp.getAddress().getHostAddress();`
+        - 获取接收到的数据的数据长度(字节个数)`int length = dp.getLength();`
+        - 获取发送端在数据包的端口对象`int port = dp.getPort();`
+        - 关闭对象`ds.close();`
+    - TCP
+        - *实现TCP客户端*`java.net.Socket`
+        - 创建一个客户端类`Socket soc = Socket('ip address',8685)`
+        - 创建数据库,向服务端写数据`OutputStream sendO = soc.getOutputStream();`
+        - 向流写入数据`sendO.write("Hello Server".getBytes())`
+        - 关闭数据流`sendO.close();`
+        - *实现服务端*
+        - 创建服务端`ServerSocket ser = new ServerSocket(8888)`
+        - 取得连接客户端的套接字`Socket soc = ser.accept();`
+        - 获取输入流`InputStream inServer = soc.getInputStream()`
+        - 定义接收数据的字节数组`byte[] acceptData = new byte[1024]`
+        - 将数据流读出`inServer.read(acceptData)`,`new String(data,0,len)`
+        - 关闭套接字对象`sendO.close()`,关闭服务器`soc.close()`
+        - 服务端没有流功能,它的流对象来源于客户端.
+        
     
 ### JAVA学习 2018.1.17
 

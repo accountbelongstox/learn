@@ -1296,14 +1296,22 @@ var router = new VueRouter({
         
         # 安装`cnpm install babel-loader babel-core --save-dev`
         # 安装`cnpm install @babel-preset-env --save-dev`
+            # 配置`rules:[ test:"/\.js$/", use:{ loader:"babel-loader",options{ persets:[ ["env":{ modules:false,targets:{ node:"9.9.0"} }] ] }} ]`
+            
         # 编译TypeScript
             
             # `cnpm i typescript ts-loader awesome-typescript-loader --save-dev`
-
+            # 配置·rules:[ test:"/\.tsx?$/", use:{ loader:"awesome-typescript-loader",options{ persets:{transpileOnly:true/*加快编译速度 */,configFile:"./tsconfig.json"/*指定特定的ts编译配置，为了区分脚本的ts配置*/} }} ]·
+        # 
+        
     # typeings
         
         # 安装`npm i -g typings`,`npm i typings --save-dev`
         # 安装`typings install lodash --save`
+    
+    # 打包CSS
+        
+        
         
 # 学习进度
 
