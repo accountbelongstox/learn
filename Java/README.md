@@ -693,9 +693,49 @@ Override Overload, 重写,重载.
         - 定义接收数据的字节数组`byte[] acceptData = new byte[1024]`
         - 将数据流读出`inServer.read(acceptData)`,`new String(data,0,len)`
         - 关闭套接字对象`sendO.close()`,关闭服务器`soc.close()`
+        - 终止向服务器写序列`socket.shutdownOutput();`
+        - 服务端准备接收数据并创建文件`File upload = new File("d:\\upload");if(!upload.exists())upload.mkdirs();`
+        - 服务端准备接收数据并创建文件`FileOutputStream fos = new FileOutputStream(upload+File.separator+filename);`
+        - 服务端多线程上传`public class Upload implements Runnable{ public void run(){ }}`
+        - 服务端多线程上传`new Thread( new Upload(socket) ).start();`
         - 服务端没有流功能,它的流对象来源于客户端.
-        
-    
+
+- 工具类
+    - 数据库
+        - apache的commons组件
+        - commons-dbutils-1.4.jar：封装并简化了JDBC；
+        - commons-dbcp-1.4.jar：apache commons提供的数据库连接池组件，命名为DBCP；
+        - commons.pool-1.3.jar：DBCP连接池依赖该jar包；
+        - mysql-connector-java-5.1.28-bin.jar：MySQL的JDBC驱动包，用JDBC连接MySQL数据库必须使用该JAR包。
+        - 获取数据库连接的工具类`import javax.sql.DataSource;`
+        - 获取数据库连接的工具类`import org.apache.commons.dbcp.BasicDataSource;`
+        - 创建BasicDataSource对象`private static BasicDataSource datasource = new BasicDataSource();`
+        - 静态代码块,实现必要参数设置->设置驱动类`static{ datasource.setDriverClassName("com.mysql.jdbc.Driver"); }`
+        - 设置连接地址`datasource.setUrl("jdbc:mysql://localhost:3306/gjp");`
+        - 获取数据库连接的工具类`datasource.setUsername("root");`
+        - 获取数据库连接的工具类`datasource.setPassword("root");`
+        - 设置最大连接数`datasource.setMaxActive(10);`
+        - 设置最大空闲`datasource.setMaxIdle(5);`
+        - 设置最小空闲`datasource.setMinIdle(2);`
+        - 设置初始化大小`datasource.setInitialSize(10);`
+
+- redis-java
+    - 引入包`jedis-2.9.0.jar+commons-pool2-2.0.jar`
+    - 引入包`import redis.clients.jedis.Jedis; import redis.clients.jedis.JedisPool; import redis.clients.jedis.JedisPoolConfig;`
+    - 连接数据库`Jedis jedis = new Jedis("192.168.186.131", 6379);`
+    - 获取值`String username = jedis.get("username");`
+    - 添加值`jedis.set("addr", "数据");`
+    - *使用连接池*
+    - 创建连接池对象`JedisPoolConfig poolConfig = new JedisPoolConfig();`
+    - 设置最大空闲数`poolConfig.setMaxIdle(30);`
+    - 设置最小空闲数`poolConfig.setMinIdle(30);`
+    - 设置最大连接数`poolConfig.setMaxTotal(50);`
+    - 创建一个连接池`JedisPool pool = new JedisPool(poolConfig, "192.168.186.131", 6379);`
+    - 从连接池获取连接资源`Jedis jedis = pool.getResource();`
+    - 设置及取出数据`jedis.set("xxx","yyyy");`,`jedis.get("xxx");`
+    - 关闭连接池及连接对象`jedis.close();`,`pool.close();`
+
 ### JAVA学习 2018.1.17
 
-- `F:\video\Java\北京黑马java28期基础班+就业班\01_2016年北京黑马最新基础班\day30\day30_video` 
+- `F:\video\Java\北京黑马java28期基础班+就业班\02_2016年7月北京黑马32期就业班\【阶段01】JavaWeb阶段\WEB25_基础加强\WEB25_基础加强\视频`
+- `F:\video\Java\北京黑马java28期基础班+就业班\02_2016年7月北京黑马32期就业班\【阶段01】JavaWeb阶段\WEB08_MySQL&JDBC回顾\WEB08_MySQL&JDBC回顾\视频`
