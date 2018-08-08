@@ -104,6 +104,13 @@
     	- isalnum() 检查是否为字母和数字 
     	- isprint() 检查是否是可打印字符 
     	- isgraph() 检查是否是图形字符，等效于 isalnum() | ispunct() 
+    
+    - 输入/输出
+        - `putchar();`输出字符
+        - `putwchar();`输出宽字符
+        - `getchar();`输入字符
+        - `getwchar();`输入宽字符
+    
 - 常识
     - 32位操作系统 int long 等价.
     - C语言boolean值是用 0 和 1 来代替.
@@ -557,14 +564,15 @@ lpProcessInformation //进程标识符
 - 定义一个基本的WINAPI `DWORD WINAPI MyMsg()`
 
 - 多线程
-
-    -  线程冻结,使线程暂停
-    -  标准函数标识`__stdcall`
-    -  创建一个句柄`HANDLE hthread;`
-    -  保存线程编号`DWORD threadId;`
-    -  创建线程`hthread = CreateThread(NULL/*安全属性*/,NULL/*堆栈大小*/,MyMsg/*线程入口点*/,NULL/*函数的参数*/,0/*立即执行*/,&threadId/*保存线程的id*/)`
-    -  关闭一个线程`CloseHandle(thread)`
-    -  使多线程同步`WaitForSingleObject(thread,INFINITE)`
+    - 线程冻结,使线程暂停
+    - 创建多线程`_beginthread(funName,0,&add)`.0代表拷贝,&为取得地址
+    - 标准函数标识`__stdcall`
+    - 创建一个句柄`HANDLE hthread;`
+    - 保存线程编号`DWORD threadId;`
+    - 创建线程`hthread = CreateThread(NULL/*安全属性*/,NULL/*堆栈大小*/,MyMsg/*线程入口点*/,NULL/*函数的参数*/,0/*立即执行*/,&threadId/*保存线程的id*/)`
+    - 关闭一个线程`CloseHandle(thread)`
+    - 使多线程同步`WaitForSingleObject(thread,INFINITE)`
+    - 多线程检索
 
 ```
 #include <stdio.h>
@@ -606,7 +614,6 @@ void main(){
     - 数字数组`int a[] = {1,2,3,4};`
     - 浮点数组`float a[] = {1,2,3,4};`
     - 通过指针定义数组,通过指针定义的数组意味着只知道数组的起始内存地址.并不知道长度.`char* strs[] ;`
-        
 
 * 结构体`struct`
     - 格式`struct 结构体名(也就是可选标记名） { 成员变量； }；`
@@ -630,8 +637,7 @@ void main(){
     -  空指针,表示没有存储地址`double *p = NULL`.空指针实际上是`void *0`.防止指针随便指向.
     -  定义多个指针`double * pa, pb, pc;`
     -  通过scanf初始化指针`scanf("%p",&p);`
-    
-    
+
 * 内存搜索代码
 
 ```
@@ -677,6 +683,25 @@ for (char *p = 0xae0000; p < 0xae1000; p++) {
     - 每个线程的栈是独立的.
 - 堆(heap):手动分配手动回收,先进先出. `malloc(1024*1024*2000)`;32位堆最大可分配为`2014*2014*2000bit`
 
+- 指针运算
+    - 没有明确类型大小的指针，不能进行指针运算
+    - 如果不在数组内容，指针的加减没有任何意义,指针运算的意义在于左右移动取得值.
+    - 指针运算,实际上是指针加减整数,指针减去一个指针:  (地址-地址)/sizeof(类型)
+
+	int a[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	printf("a=%p,&a=%p", a, &a);
+	printf("\n%d,%d", a, a + 1);//数组的第一个元素的地址，4
+	printf("\n%d,%d", &a, &a + 1);//数组的类型，40
+
+- 查看数据类型 *typeid* :` typeid(a).name()`
+- 二级指针`**p`,二级指针的用处在于在指针函数内副本机制时,用二级指针传递指针地址可以改变数据
+- 空指针`void *p`,空指针可以指向任何类型的数据.可以为任何类型赋值.`p = &p`
+- 空指针需要类型转换,才能读取数据`*((double *)p)`,明确从地址开始前进几个字节.
+- 内存操作`#include <memory.h>`
+- 内存操作`memset(str,'A',5)`,从str的首地址前进5个字节进行赋值.
+- 在内存中,代码区分为常量区,字符串都在符号表,非字符串会直接拷贝到寄存器.字符串就是传递地址  
+- 数组名是常量.名字不可改变.
+- 对比字符串,是对比指针的值.或者使用`if(strcmp(str1,str2)==0)`来对比
 
 ## 作业
 - 写一个移动鼠标并点击的案例
