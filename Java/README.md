@@ -737,5 +737,4 @@ Override Overload, 重写,重载.
 
 ### JAVA学习 2018.1.17
 
-- `F:\video\Java\北京黑马java28期基础班+就业班\02_2016年7月北京黑马32期就业班\【阶段01】JavaWeb阶段\WEB25_基础加强\WEB25_基础加强\视频`
 - `F:\video\Java\北京黑马java28期基础班+就业班\02_2016年7月北京黑马32期就业班\【阶段01】JavaWeb阶段\WEB08_MySQL&JDBC回顾\WEB08_MySQL&JDBC回顾\视频`
