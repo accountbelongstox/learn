@@ -226,9 +226,6 @@ int main()
 }
 ```
 
-
-
-
 - 基本运算符与表达式
     - 表达式
     - 表达式就是一个求值的规则.1+2; 就是表达式,+是算符,操作数是1和2
@@ -238,6 +235,12 @@ int main()
     - 特性
     - 整数运算时只能得到整数. 比如 7/3 = 2. 
     - 求余运算,两边必须是整数.
+
+- 运算逻辑
+    - 循环语句
+        - `while`表达式循环,`while( 1>0 && 2<3)`表达式可以是任何.  
+        - `do{}while(1<0)`先执行再判断条件.因此会至少执行一次.  
+        - `for()`语句.  
 
 ```
 //数字倒置
@@ -257,12 +260,12 @@ int main()
 }
 ```
 
-- ++
-- ++优先级高于乘法,加减法.
-- 逗号运算符
-- 多个表达式,用 , 连接起来就是逗号运算符.值为最后一个运算的结果.
-- 逗号运算符的优先级最低.
-- 逗号还可以用来连接多个语句.
+- *++*
+    - ++优先级高于乘法,加减法.
+    - 逗号运算符
+    - 多个表达式,用 , 连接起来就是逗号运算符.值为最后一个运算的结果.
+    - 逗号运算符的优先级最低.
+    - 逗号还可以用来连接多个语句.
 
 ```
 int main()
@@ -334,22 +337,25 @@ void main()
 - `switch`只能应用于整数.
 - `goto`语句.在块语句前加上`AB:`就是语句标号.使用`goto AB;`可以跳转过来
 
-### 循环语句
-- `while`表达式循环,`while( 1>0 && 2<3)`表达式可以是任何.  
-- `do{}while(1<0)`先执行再判断条件.因此会至少执行一次.  
-- `for()`语句.  
+- 移动窗口
+    - `HWND win FindWindowA("className","title");`HWND 是应用程序的编号  
+    - `SetWindowPos(win,NULL,10,20,400,800,0)`参数,1:程序编号,2NULL,3-4XY坐标,5-6窗口宽高.7,窗口位置  
+    - `ShowWindow(win,SW_HIDE)`用于隐藏或显示程序
 
-### 移动窗口
-- `HWND win FindWindowA("className","title");`HWND 是应用程序的编号  
-- `SetWindowPos(win,NULL,10,20,400,800,0)`参数,1:程序编号,2NULL,3-4XY坐标,5-6窗口宽高.7,窗口位置  
-- `ShowWindow(win,SW_HIDE)`用于隐藏或显示程序
-
-### 线程
-- 线程是用来解决并发问题.
-- 首先包含头文件`process.h`.
-- 定义一个线程入口函数,参数为无类型的空地址`void run(void *p)`,基中的`*p`代表无类型空地址
-- `_beginthread(run,0,NULL)`用于开启一个线程.`for(int i=0;i<3;i++){ _beginthread(funName,0,NULL); }`
-- `_beginthread`第一个参数传递函数指针
+- 线程
+    - 线程是用来解决并发问题.
+    - 首先包含头文件`process.h`.
+    - 定义一个线程入口函数,参数为无类型的空地址`void run(void *p)`,基中的`*p`代表无类型空地址
+    - `HWAD hd = _beginthread(run,0,NULL)`用于开启一个线程.`for(int i=0;i<3;i++){ _beginthread(funName,0,NULL); }`
+    - `_beginthread`第一个参数传递函数指针
+    - 多线程同步`WaitForSingleObject(hd),INFINITE);`
+    -  线程冻结,使线程暂停
+    -  标准函数标识`__stdcall`
+    -  创建一个句柄`HANDLE hthread;`
+    -  保存线程编号`DWORD threadId;`
+    -  创建线程`hthread = CreateThread(NULL/*安全属性*/,NULL/*堆栈大小*/,MyMsg/*线程入口点*/,NULL/*函数的参数*/,0/*立即执行*/,&threadId/*保存线程的id*/)`
+    -  关闭一个线程`CloseHandle(thread)`
+    -  使多线程同步`WaitForSingleObject(thread,INFINITE)`
 
 ### 模块
 #### 动态库
